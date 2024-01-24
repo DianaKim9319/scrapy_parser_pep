@@ -18,7 +18,7 @@ class PepParsePipeline:
 
     def close_spider(self, spider: Spider) -> None:
         current_datetime = datetime.datetime.now(
-        ).strftime("%Y-%m-%dT%H-%M-%S")
+        ).strftime('%Y-%m-%dT%H-%M-%S')
         filename = os.path.join(
             BASE_DIR,
             'results',

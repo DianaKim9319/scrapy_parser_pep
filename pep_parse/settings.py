@@ -10,7 +10,7 @@ ROBOTSTXT_OBEY = True
 
 FEED_EXPORT_ENCODING = "utf-8"
 
-current_datetime = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+current_datetime = datetime.datetime.now().strftime('%Y-%m-%dT%H-%M-%S')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
