@@ -62,7 +62,7 @@ class PepParseSpiderMiddleware:
         pass
 
     def process_start_requests(
-            self,  start_requests: Iterable[Request], spider: Spider
+            self, start_requests: Iterable[Request], spider: Spider
     ) -> Iterable[Request]:
         """
         Called with the start requests of the spider, and works
