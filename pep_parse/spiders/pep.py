@@ -1,8 +1,9 @@
 import re
+from typing import Generator
 from urllib.parse import urljoin
 
 import scrapy
-from scrapy.http import Response
+from scrapy.http import Response, Request
 
 from pep_parse.items import PepParseItem
 from pep_parse.settings import DOMAIN
@@ -13,7 +14,7 @@ class PepSpider(scrapy.Spider):
     allowed_domains = [DOMAIN]
     start_urls = [f'https://{DOMAIN}/']
 
-    def parse(self, response: Response) -> None:
+    def parse(self, response: Response) -> Generator[Request, None, None]:
         """
         Парсит URL всех PEP и переходит по ним.
 
@@ -26,7 +27,9 @@ class PepSpider(scrapy.Spider):
             link = urljoin(response.url, pep_link)
             yield response.follow(link, callback=self.parse_pep)
 
-    def parse_pep(self, response: Response) -> PepParseItem:
+    def parse_pep(
+            self, response: Response
+    ) -> Generator[PepParseItem, None, None]:
         """
         Парсит такие данные, как "Номер", "Название" и "Статус"
         по каждиму PEP.

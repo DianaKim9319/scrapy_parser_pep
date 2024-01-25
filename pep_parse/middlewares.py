@@ -1,4 +1,4 @@
-from typing import Iterable, Optional, Union
+from typing import Iterable, Optional, Union, Generator
 
 from scrapy import signals, Item
 from scrapy.spiders import Spider
@@ -38,7 +38,7 @@ class PepParseSpiderMiddleware:
 
     def process_spider_output(
             self, response: Response, result: Iterable, spider: Spider
-    ) -> Iterable[Request]:
+    ) -> Generator[Union[Request, Item], None, None]:
         """
         Called with the results returned from the Spider, after
         it has processed the response.
@@ -63,7 +63,7 @@ class PepParseSpiderMiddleware:
 
     def process_start_requests(
             self, start_requests: Iterable[Request], spider: Spider
-    ) -> Iterable[Request]:
+    ) -> Generator[Request, None, None]:
         """
         Called with the start requests of the spider, and works
         similarly to the process_spider_output() method, except
