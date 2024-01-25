@@ -2,10 +2,11 @@ import os
 import csv
 import datetime
 from collections import Counter
-from scrapy.spiders import Spider
-from scrapy import Item
 
-from .settings import BASE_DIR
+from scrapy import Item
+from scrapy.spiders import Spider
+
+from pep_parse.settings import BASE_DIR, FILE_FORMAT
 
 
 class PepParsePipeline:
@@ -22,7 +23,7 @@ class PepParsePipeline:
         filename = os.path.join(
             BASE_DIR,
             'results',
-            f'status_summary_{current_datetime}.csv'
+            f'status_summary_{current_datetime}.{FILE_FORMAT}'
         )
 
         with open(filename, mode='w', encoding='utf-8') as file:

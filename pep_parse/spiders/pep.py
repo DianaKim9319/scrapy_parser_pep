@@ -1,17 +1,19 @@
 import re
-import scrapy
-from scrapy.http import Response
 from urllib.parse import urljoin
 
+import scrapy
+from scrapy.http import Response
+
 from pep_parse.items import PepParseItem
+from pep_parse.settings import DOMAIN
 
 
 class PepSpider(scrapy.Spider):
     name = 'pep'
-    allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    allowed_domains = [DOMAIN]
+    start_urls = [f'https://{DOMAIN}/']
 
-    def parse(self, response):
+    def parse(self, response: Response) -> None:
         """
         Парсит URL всех PEP и переходит по ним.
 

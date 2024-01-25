@@ -1,22 +1,22 @@
 import os
-import datetime
 
 BOT_NAME = 'pep_parse'
+NEWSPIDER_MODULE = f'{BOT_NAME}.spiders'
+SPIDER_MODULES = [NEWSPIDER_MODULE]
 
-SPIDER_MODULES = ['pep_parse.spiders']
-NEWSPIDER_MODULE = 'pep_parse.spiders'
+DOMAIN = 'peps.python.org'
 
 ROBOTSTXT_OBEY = True
 
-FEED_EXPORT_ENCODING = "utf-8"
-
-current_datetime = datetime.datetime.now().strftime('%Y-%m-%dT%H-%M-%S')
+FEED_EXPORT_ENCODING = 'utf-8'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+FILE_FORMAT = 'csv'
+
 FEEDS = {
-    'results/pep_%(time)s.csv': {
-        'format': 'csv',
+    f'results/pep_%(time)s.{FILE_FORMAT}': {
+        'format': FILE_FORMAT,
         'fields': ['number', 'name', 'status'],
     },
 }
